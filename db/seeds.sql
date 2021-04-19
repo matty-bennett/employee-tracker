@@ -1,4 +1,4 @@
-INSERT INTO department (dptname)
+INSERT INTO departments (dptname)
 VALUES
     ('Engineering'),
     ('Human Resources'),
@@ -6,14 +6,14 @@ VALUES
 
 INSERT INTO roles (title, salary, department_id)
 VALUES
-    ('Lead Engineer', 120,000.00, 1),
-    ('Engineer', 90,000.00, 1),
-    ('General Manager', 150,000.00, 2),
-    ('Office Manager', 100,000.00, 2),
-    ('Sales Lead', 120,000.00, 3),
-    ('Sales Associate', 90,000.00, 3);
+    ('Lead Engineer', 120000.00, 1),
+    ('Engineer', 90000.00, 1),
+    ('General Manager', 150000.00, 2),
+    ('Office Manager', 100000.00, 2),
+    ('Sales Lead', 120000.00, 3),
+    ('Sales Associate', 90000.00, 3);
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES
     ('Jacob', 'Smith', 1, NULL),
     ('Samantha', 'Stewart', 2, 1),

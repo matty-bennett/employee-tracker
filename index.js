@@ -1,6 +1,6 @@
 const mysql = require ('mysql2');
 const inquirer = require('inquirer');
-//const Choices = require('inquirer/lib/objects/choices');
+const cTable = require('console.table');
 
 // Connect to database
 const db = mysql.createConnection(
@@ -13,10 +13,6 @@ const db = mysql.createConnection(
     console.log('Connected to the employeedb database.')
 );
 
-db.connect(function (err) {
-	if (err) throw err;
-});
-
 let promptUser = () => {
     inquirer
         .prompt([
@@ -28,48 +24,107 @@ let promptUser = () => {
             }
         ])
         .then(answers => {
-            if (answers === 'View all departments') {
-                console.log(answers);
-            } else if (answers === 'View all roles') {
-                console.log(answers);
-            } else if (answers === 'View all employees') {
-                console.log(answers);
-            } else if (answers === 'Add a department') {
-                console.log(answers);
-            } else if (answers === 'Add a role') {
-                console.log(answers);
-            } else if (answers === 'Add an employee') {
-                console.log(answers);
-            } else (answers === 'Update an employee role')
-                console.log(answers);
-        })
+            switch (answers.options) {
+                case 'View all departments':
+                    viewAllDepartments();
+                    break;
+
+                case 'View all roles':
+                    viewAllRoles();
+                    break;
+
+                case 'View all employees':
+                    viewAllEmployees();
+                    break;
+
+                case 'Add a department':
+                    addDepartment();
+                    break;
+
+                case 'Add a role':
+                    addRole();
+                    break;
+
+                case 'Add an employee':
+                    addEmployee();
+                    break;
+
+                case 'Update an employee role':
+                    updateEmployeeRole();
+                    break;
+
+                default: process.exit();
+            }
+        });
 };
 promptUser();
 
 viewAllDepartments = () => {
-
+    db.query(
+        `SELECT * FROM departments ORDER BY id ASC`,
+        function (err, results) {
+            console.table(results);
+            promptUser();
+        }
+    )
 };
 
 viewAllRoles = () => {
-
+    db.query(
+        `SELECT * FROM roles ORDER by id ASC`,
+        function(err, results) {
+            console.table(results);
+            promptUser();
+        }
+    )
 };
 
-viewAllEployees = () => {
-
+viewAllEmployees = () => {
+    db.query(
+        `SELECT * FROM employees ORDER by id ASC`,
+        function(err, results) {
+            console.table(results);
+            promptUser(); 
+        }
+    )
 };
 
 addDepartment = () => {
-
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'addDepartment',
+                message: 'Enter new department name:'
+            }
+        ])
+        .then(newDepartment => {
+            db.query(
+                `INSERT INTO departments SET ?`, { dptname: newDepartment.addDepartment },
+                function (err, results) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    db.query(
+                        `SELECT * FROM departments ORDER BY id ASC`,
+                        function (err, results) {
+                            console.table(results);
+                            promptUser();
+                        }
+                    );
+                }
+            );
+        })
 };
 
 addRole = () => {
-
+    
 };
 
 addEmployee = () => {
 
 };
 
-updateEmployeeRole = () => {
+//updateEmployeeRole = () => {
 
-};
+//};
