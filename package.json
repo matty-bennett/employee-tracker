@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/matty-bennett/employee-tracker/issues"
   },
-  "homepage": "https://github.com/matty-bennett/employee-tracker#readme"
+  "homepage": "https://github.com/matty-bennett/employee-tracker#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
 }
