@@ -2,6 +2,8 @@
 
 ## Description 
 - Employee Tracker is an app for businesses to view and track current departments, roles, and employees as well as managers and salaries.
+## Demo
+https://drive.google.com/file/d/1O3nYU_Om2KYg_KY9sfKCkObaOP3A1lTt/view
 ## Table of Contents
 * [Technologies Used](https://github.com/matty-bennett/employee-tracker#technologies-used)
 * [License](https://github.com/matty-bennett/employee-tracker#license)
